@@ -6,6 +6,7 @@ pytest-cov==4.1.0
 
 # Code Analysis
 flake8==6.1.0
+pylint==2.17.5
 ruff==0.0.285
 
 # Formatters
