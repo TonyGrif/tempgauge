@@ -11,3 +11,4 @@ ruff==0.0.285
 
 # Formatters
 black==23.7.0
+isort==5.12.0
