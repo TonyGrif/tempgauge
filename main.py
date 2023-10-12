@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 
+"""This is the main module for the cpu-temperature project.
+"""
+
 import argparse
 from pathlib import Path
 
-def main():
-    parser = argparse.ArgumentParser(
-            prog="cpu-temperature",
-            description="Python program to analyze CPU temperature changes over time")
 
-    parser.add_argument(
-            'txt_file',
-            type=Path,
-            help="Path to text file")
+def main():
+    """Run the cpu-temperature program."""
+    parser = argparse.ArgumentParser(
+        prog="cpu-temperature",
+        description="Analyzes CPU temperature changes over time",
+    )
+
+    parser.add_argument("txt_file", type=Path, help="Path to text file")
 
     args = parser.parse_args()
 
@@ -20,6 +23,7 @@ def main():
         return
 
     return
+
 
 if __name__ == "__main__":
     main()
