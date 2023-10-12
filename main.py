@@ -7,6 +7,9 @@ import argparse
 from pathlib import Path
 
 
+from parse_temps import parse_raw_temps
+
+
 def main():
     """Run the cpu-temperature program."""
     parser = argparse.ArgumentParser(
@@ -21,6 +24,11 @@ def main():
     if not args.txt_file.is_file() or args.txt_file.suffix != ".txt":
         print("Must supply a real text file")
         return
+
+    with open(args.txt_file, 'r') as temps:
+        # Output as one strucutre for now
+        for f_temps in parse_raw_temps(temps):
+            print(f_temps)
 
     return
 
