@@ -15,7 +15,7 @@ def main():
 
     args = parser.parse_args()
 
-    if not args.txt_file.is_file():
+    if not args.txt_file.is_file() or args.txt_file.suffix != ".txt":
         print("Must supply a real text file")
         return
 
