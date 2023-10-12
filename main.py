@@ -15,7 +15,10 @@ def main():
 
     args = parser.parse_args()
 
-    print(args.txt_file)
+    if not args.txt_file.is_file():
+        print("Must supply a real text file")
+        return
+
     return
 
 if __name__ == "__main__":
