@@ -1,6 +1,11 @@
-# Requirements
-* [Python 3.10.X](https://www.python.org/)
+# CPU Temperature Analysis
 
-# Sample Execution & Output
-If run without command line arguments, using `./main.py`, the output will be "Hello World!"
+
+## Requirements
+* [Python 3.11](https://www.python.org/)
+
+## Running Instructions
+
+
+## Sample Execution & Output
 
