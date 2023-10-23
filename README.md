@@ -16,20 +16,23 @@ If this program is run without any arguments, the following usage error message 
 Invalid text file formatting will not be checked for and will result in undefined behavior.
 
 ## Sample Execution & Output
-When this program is run with `./main.py resources/sensors-with-label.txt`, the first five lines of the output will be as follows:
+When this program is run with `./main.py resources/sample.txt`, the output will be as follows:
 ```
-(0, [65.0, 68.0, 54.0, 63.0])
-(30, [76.0, 75.0, 65.0, 71.0])
-(60, [77.0, 77.0, 61.0, 73.0])
-(90, [79.0, 74.0, 67.0, 73.0])
-(120, [76.0, 77.0, 65.0, 73.0])
+Core 0 
+============
+0 <= x <= 30; y= 61.0000 + 0.6333x; interpolation
+30 <= x <= 60; y= 98.0000 + -0.6000x; interpolation
+60 <= x <= 90; y= 20.0000 + 0.7000x; interpolation
+90 <= x <= 120; y= 128.0000 + -0.5000x; interpolation
 ```
 
-When this program is run with `./main.py resources/sensors-no-label.txt`, the first five lines of the output will be as follows:
+When this program is run with `./main.py resources/sensors-with-label.txt`, the first couple lines of the output will be as follows:
 ```
-(0, [65.0, 68.0, 54.0, 63.0])
-(30, [76.0, 75.0, 65.0, 71.0])
-(60, [77.0, 77.0, 61.0, 73.0])
-(90, [79.0, 74.0, 67.0, 73.0])
-(120, [76.0, 77.0, 65.0, 73.0])
+Core 0
+============
+0 <= x <= 30; y= 65.0000 + 0.3667x; interpolation
+30 <= x <= 60; y= 75.0000 + 0.0333x; interpolation
+60 <= x <= 90; y= 73.0000 + 0.0667x; interpolation
+90 <= x <= 120; y= 88.0000 + -0.1000x; interpolation
+120 <= x <= 150; y= 68.0000 + 0.0667x; interpolation
 ```

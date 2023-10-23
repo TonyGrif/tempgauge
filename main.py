@@ -35,8 +35,11 @@ def main():
     cores = []
 
     with open(args.txt_file, "r", encoding="utf-8") as temps:
-        # Output as one strucutre for now
         for f_temps in parse_raw_temps(temps):
+            # Catch new lines at the end
+            if not f_temps[1]:
+                break
+
             times.append(f_temps[0])
             core0.append(f_temps[1][0])
             core1.append(f_temps[1][1])
@@ -57,8 +60,10 @@ def main():
             print(
                 f"{time} <= x <= {times[count+1]}; "
                 + f"y= {piecewise_linear_interpolation(time, times[count+1], cores[core_num][count], cores[core_num][count+1])}; "
-                + "interpolation\n"
+                + "interpolation"
             )
+
+        print("\n")
 
     return
 
