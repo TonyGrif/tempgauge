@@ -14,4 +14,5 @@ def piecewise_linear_interpolation(
         equation (string): The resulting equation.
     """
     y_intercept = y_zero - (((y_one - y_zero) / (x_one - x_zero) * x_zero))
+    y_intercept = format(y_intercept, '.4f')
     return str(y_intercept)
