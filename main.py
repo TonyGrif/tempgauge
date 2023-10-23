@@ -34,7 +34,7 @@ def main():
     core3 = []
     cores = []
 
-    with open(args.txt_file, "r") as temps:
+    with open(args.txt_file, "r", encoding="utf-8") as temps:
         # Output as one strucutre for now
         for f_temps in parse_raw_temps(temps):
             times.append(f_temps[0])
@@ -48,14 +48,16 @@ def main():
     cores.append(core2)
     cores.append(core3)
 
-    for x in range(4):
-        print(f"Core {x} \n============")
+    for core_num in range(4):
+        print(f"Core {core_num} \n============")
         for count, time in enumerate(times):
             if count + 1 > len(times) - 1:
                 break
             # TODO: way too verbose a f-string
             print(
-                f"{time} <= x <= {times[count+1]}; y= {piecewise_linear_interpolation(time, times[count+1], cores[x][count], cores[x][count+1])}; interpolation\n"
+                f"{time} <= x <= {times[count+1]}; "
+                + f"y= {piecewise_linear_interpolation(time, times[count+1], cores[core_num][count], cores[core_num][count+1])}; "
+                + "interpolation\n"
             )
 
     return
