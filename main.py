@@ -26,7 +26,7 @@ def main():
         return
 
     # TODO: restructure
-    time = []
+    times = []
     core1 = []
     core2 = []
     core3 = []
@@ -34,17 +34,23 @@ def main():
     with open(args.txt_file, 'r') as temps:
         # Output as one strucutre for now
         for f_temps in parse_raw_temps(temps):
-            time.append(f_temps[0])
+            times.append(f_temps[0])
             core1.append(f_temps[1][0])
             core2.append(f_temps[1][1])
             core3.append(f_temps[1][2])
             core4.append(f_temps[1][3])
 
-    print(time)
     print(core1)
     print(core2)
     print(core3)
     print(core4)
+    print("\n")
+
+    print("Core 1 \n============")
+    for count, time in enumerate(times):
+        if count+1 > len(times)-1:
+            break
+        print(f"{time} <= x < {times[count+1]}; y= ...; interpolation\n")
 
     return
 
