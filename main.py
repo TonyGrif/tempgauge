@@ -28,27 +28,35 @@ def main():
 
     # TODO: restructure
     times = []
+    core0 = []
     core1 = []
     core2 = []
     core3 = []
-    core4 = []
+    cores = []
+
     with open(args.txt_file, "r") as temps:
         # Output as one strucutre for now
         for f_temps in parse_raw_temps(temps):
             times.append(f_temps[0])
-            core1.append(f_temps[1][0])
-            core2.append(f_temps[1][1])
-            core3.append(f_temps[1][2])
-            core4.append(f_temps[1][3])
+            core0.append(f_temps[1][0])
+            core1.append(f_temps[1][1])
+            core2.append(f_temps[1][2])
+            core3.append(f_temps[1][3])
 
-    print(core1)
-    print("Core 1 \n============")
-    for count, time in enumerate(times):
-        if count + 1 > len(times) - 1:
-            break
-        print(
-            f"{time} <= x < {times[count+1]}; y= {piecewise_linear_interpolation(time, times[count+1], core1[count], core1[count+1])}; interpolation\n"
-        )
+    cores.append(core0)
+    cores.append(core1)
+    cores.append(core2)
+    cores.append(core3)
+
+    for x in range(4):
+        print(f"Core {x} \n============")
+        for count, time in enumerate(times):
+            if count + 1 > len(times) - 1:
+                break
+            # TODO: way too verbose a f-string
+            print(
+                f"{time} <= x <= {times[count+1]}; y= {piecewise_linear_interpolation(time, times[count+1], cores[x][count], cores[x][count+1])}; interpolation\n"
+            )
 
     return
 
