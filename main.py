@@ -25,10 +25,26 @@ def main():
         print("Must supply a real text file")
         return
 
+    # TODO: restructure
+    time = []
+    core1 = []
+    core2 = []
+    core3 = []
+    core4 = []
     with open(args.txt_file, 'r') as temps:
         # Output as one strucutre for now
         for f_temps in parse_raw_temps(temps):
-            print(f_temps)
+            time.append(f_temps[0])
+            core1.append(f_temps[1][0])
+            core2.append(f_temps[1][1])
+            core3.append(f_temps[1][2])
+            core4.append(f_temps[1][3])
+
+    print(time)
+    print(core1)
+    print(core2)
+    print(core3)
+    print(core4)
 
     return
 
