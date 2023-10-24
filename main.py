@@ -35,7 +35,7 @@ def main():
             # Stores as (time, [temps...])
             temp_data.append(f_temps)
 
-    for core_num in range(4):
+    for core_num in range(len(temp_data[0][1])):
         print(f"Core {core_num} \n============")
         for count, _ in enumerate(temp_data):
             if count + 1 > len(temp_data) - 1:
