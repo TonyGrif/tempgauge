@@ -27,39 +27,30 @@ def main():
         return
 
     # TODO: restructure
-    times = []
-    core0 = []
-    core1 = []
-    core2 = []
-    core3 = []
-    cores = []
+    temp_data = []
 
     with open(args.txt_file, "r", encoding="utf-8") as temps:
         for f_temps in parse_raw_temps(temps):
             # Catch new lines at the end
             if not f_temps[1]:
                 break
-
-            times.append(f_temps[0])
-            core0.append(f_temps[1][0])
-            core1.append(f_temps[1][1])
-            core2.append(f_temps[1][2])
-            core3.append(f_temps[1][3])
-
-    cores.append(core0)
-    cores.append(core1)
-    cores.append(core2)
-    cores.append(core3)
+            temp_data.append(f_temps)
 
     for core_num in range(4):
         print(f"Core {core_num} \n============")
-        for count, time in enumerate(times):
-            if count + 1 > len(times) - 1:
+        for count, time in enumerate(temp_data):
+            if count + 1 > len(temp_data) - 1:
                 break
-            # TODO: way too verbose a f-string
+
+            start_time = temp_data[count][0]
+            end_time = temp_data[count+1][0]
+
+            start_temp = temp_data[count][1][core_num]
+            end_temp = temp_data[count+1][1][core_num]
+
             print(
-                f"{time} <= x <= {times[count+1]}; "
-                + f"y= {piecewise_linear_interpolation(time, times[count+1], cores[core_num][count], cores[core_num][count+1])}; "
+                f"{start_time} <= x <= {end_time}; "
+                + f"y= {piecewise_linear_interpolation(start_time, end_time, start_temp, end_temp)}; "
                 + "interpolation"
             )
 
