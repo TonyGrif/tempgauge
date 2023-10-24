@@ -1,6 +1,5 @@
 import pytest
 
-
 from piecewise import piecewise_linear_interpolation
 
 
