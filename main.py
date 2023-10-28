@@ -26,9 +26,20 @@ def main():
         print("Must supply a real text file")
         return
 
+    cores = []
     temp_data = []
 
     with open(args.txt_file, "r", encoding="utf-8") as temps:
+        # Get number of cores, create structure for each, then go back
+        last_line = temps.tell()
+        count = len((temps.readline()).split())
+
+        for core_num in range(count):
+            cores.append(Core(core_num))
+
+        temps.seek(last_line)
+        
+        # Parse data
         for f_temps in parse_raw_temps(temps):
             # Catch new lines at the end
             if not f_temps[1]:
