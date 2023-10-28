@@ -50,17 +50,17 @@ def main():
             for count, temp in enumerate(f_temps[1]):
                 cores[count].add_reading((f_temps[0], temp))
 
-    for core_num in range(len(temp_data[0][1])):
-        print(f"Core {core_num} \n============")
-        for count, _ in enumerate(temp_data):
-            if count + 1 > len(temp_data) - 1:
+    for core in cores:
+        print(f"Core {core.core_num} \n=======")
+
+        for count, _ in enumerate(core.readings):
+            if count + 1 > len(core.readings) - 1:
                 break
 
-            start_time = temp_data[count][0]
-            end_time = temp_data[count + 1][0]
-
-            start_temp = temp_data[count][1][core_num]
-            end_temp = temp_data[count + 1][1][core_num]
+            start_time = core.readings[count][0]
+            end_time = core.readings[count + 1][0]
+            start_temp = core.readings[count][1]
+            end_temp = core.readings[count + 1][1]
 
             pli_eq = piecewise_linear_interpolation(
                 start_time, end_time, start_temp, end_temp
