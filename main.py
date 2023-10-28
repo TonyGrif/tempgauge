@@ -7,6 +7,7 @@ import argparse
 from pathlib import Path
 
 from parse_temps import parse_raw_temps
+from src.core import Core
 from src.piecewise import piecewise_linear_interpolation
 
 

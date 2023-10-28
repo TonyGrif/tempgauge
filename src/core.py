@@ -2,7 +2,7 @@ class Core:
     """Class containing data on a CPU core.
 
     Attributes:
-        core_num (int): The CPU core number.    
+        core_num (int): The CPU core number.
         readings (list): List of tuples of CPU readings.
     """
 
@@ -11,8 +11,10 @@ class Core:
 
         Parameters:
             c_num (int): The CPU core number.
+            readings (list): List of tuples containing readings.
         """
         self.core_num = c_num
+        self.readings = []
 
     @property
     def core_num(self) -> int:
@@ -38,3 +40,12 @@ class Core:
         if num < 0:
             raise AttributeError("Negative core number is not allowed")
         self._core_num = num
+
+    def add_reading(self, point: tuple) -> None:
+        """
+        Add a new reading to the reading list.
+
+        Parameters:
+            point (tuple): Tuple containing (time, temperature) readings.
+        """
+        self.readings.append(point)
