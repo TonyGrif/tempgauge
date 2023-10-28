@@ -27,7 +27,6 @@ def main():
         return
 
     cores = []
-    temp_data = []
 
     with open(args.txt_file, "r", encoding="utf-8") as temps:
         # Get number of cores, create structure for each, then go back
@@ -44,8 +43,6 @@ def main():
             # Catch new lines at the end
             if not f_temps[1]:
                 break
-            # Stores as (time, [temps...])
-            temp_data.append(f_temps)
 
             for count, temp in enumerate(f_temps[1]):
                 cores[count].add_reading((f_temps[0], temp))
