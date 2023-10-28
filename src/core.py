@@ -3,6 +3,7 @@ class Core:
 
     Attributes:
         core_num (int): The CPU core number.    
+        readings (list): List of tuples of CPU readings.
     """
 
     def __init__(self, c_num: int) -> None:
@@ -30,7 +31,10 @@ class Core:
 
         Parameters:
             num (int): The core number.
+
+        Raises:
+            AttributeError: If negative number is passed.
         """
         if num < 0:
-            num = num * -1
+            raise AttributeError("Negative core number is not allowed")
         self._core_num = num
