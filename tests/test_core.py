@@ -1,4 +1,5 @@
 import pytest
+import os.path
 from core import Core
 
 
@@ -29,3 +30,19 @@ class TestCore:
 
         core.add_reading((60, 73))
         assert (60, 73) in core.readings
+
+    def test_write_to_file(self, core):
+        assert core.core_num == 1
+        assert not core.readings
+
+        core.add_reading((0, 61))
+        core.add_reading((30, 80))
+
+        core.write_to_file()
+        assert os.path.isfile("reports/core-1.txt")
+
+        with open("reports/core-1.txt", "r") as file:
+            assert (
+                "0      <= x <=     30; y= 61.0000 + 0.6333x   ; interpolation"
+                in file.readline()
+            )
