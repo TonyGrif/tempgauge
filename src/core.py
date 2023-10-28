@@ -1,3 +1,7 @@
+"""This module contains the CPU core class.
+"""
+
+
 class Core:
     """Class containing data on a CPU core.
 
