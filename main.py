@@ -38,7 +38,7 @@ def main():
             cores.append(Core(core_num))
 
         temps.seek(last_line)
-        
+
         # Parse data
         for f_temps in parse_raw_temps(temps):
             # Catch new lines at the end
@@ -46,6 +46,9 @@ def main():
                 break
             # Stores as (time, [temps...])
             temp_data.append(f_temps)
+
+            for count, temp in enumerate(f_temps[1]):
+                cores[count].add_reading((f_temps[0], temp))
 
     for core_num in range(len(temp_data[0][1])):
         print(f"Core {core_num} \n============")
