@@ -16,7 +16,7 @@ If this program is run without any arguments, the following usage error message 
 Invalid text file formatting will not be checked for and will result in undefined behavior.
 
 ## Sample Execution & Output
-When this program is run with `./main.py resources/sample.txt`, four output files will be created, one for each core following the naming convention of `core-{core_number}.txt`. As an example, core-0.txt will contain the following:
+When this program is run with `./main.py resources/sample.txt`, four output files will be created, one for each core following the naming convention of `core-{core_number}.txt`. As an example, `core-0.txt` will contain the following:
 ```
 0 <= x <= 30; y= 61.0000 + 0.6333x; interpolation
 30 <= x <= 60; y= 98.0000 + -0.6000x; interpolation
