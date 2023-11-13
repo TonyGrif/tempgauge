@@ -2,7 +2,7 @@
 """
 
 from pathlib import Path
-from src.piecewise import piecewise_linear_interpolation as pli
+from src.equations import piecewise_linear_interpolation as pli
 
 
 class Core:

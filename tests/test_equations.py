@@ -1,10 +1,10 @@
 import pytest
 
-from piecewise import piecewise_linear_interpolation
+from equations import piecewise_linear_interpolation
 
 
-class TestPiecewiseLinearInterpolation:
-    def test_equation(self):
+class TestEquations:
+    def test_piecewise_linear_interpolation(self):
         result = piecewise_linear_interpolation(30, 60, 80, 62)
         assert result == "98.0000 + -0.6000x"
 
