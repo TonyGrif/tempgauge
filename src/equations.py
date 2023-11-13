@@ -29,6 +29,22 @@ def piecewise_linear_interpolation(
     return equation
 
 
-def least_squares_transpose() -> None:
-    """Calculate the discrete least squares approximation for given points."""
-    return None
+def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:
+    """Calculate the discrete least squares approximation for given points.
+
+    Parameters:
+        x_matrix (np.ndarray): The X matrix.
+        y_matrix (np.ndarray): The Y matrix.
+
+    Returns:
+        result (string): The resulting equation.
+    """
+    x_transpose = np.transpose(x_matrix)
+    xtx = np.dot(x_transpose, x_matrix)
+
+    xty = np.dot(x_transpose, y_matrix)
+
+    result_matrix = np.linalg.solve(xtx, xty)
+
+    result = f"{result_matrix[0]:.4f} + {result_matrix[1]:.4f}x"
+    return result
