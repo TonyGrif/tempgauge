@@ -22,3 +22,10 @@ class TestEquations:
 
         result = least_squares_transpose(x_matrix, y_matrix)
         assert result == "-0.3333 + 2.0000x"
+
+        x_matrix = np.array([[1, -2], [1, -1], [1, 0]])
+        y_matrix = np.array([4, 1, 0])
+
+        result = least_squares_transpose(x_matrix, y_matrix)
+        assert result == "-0.3333 + -2.0000x"
+

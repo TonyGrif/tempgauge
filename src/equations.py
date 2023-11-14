@@ -37,7 +37,7 @@ def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:
         y_matrix (np.ndarray): The Y matrix.
 
     Returns:
-        result (string): The resulting equation.
+        result (string): The resulting linear equation.
     """
     x_transpose = np.transpose(x_matrix)
     xtx = np.dot(x_transpose, x_matrix)
