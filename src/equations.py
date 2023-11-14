@@ -22,11 +22,8 @@ def piecewise_linear_interpolation(
     slope = (y_one - y_zero) / (x_one - x_zero)
 
     y_intercept = y_zero - (slope * x_zero)
-    y_intercept = format(y_intercept, ".4f")
 
-    equation = f"{y_intercept} + {format(slope, '.4f')}x"
-
-    return equation
+    return f"{y_intercept:.4f} + {slope:.4f}x"
 
 
 def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:
@@ -44,8 +41,7 @@ def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:
     xty = np.dot(x_transpose, y_matrix)
 
     result_matrix = np.linalg.solve(xtx, xty)
-    y_intercept = format(result_matrix[0][0], ".4f")
-    slope = format(result_matrix[1][0], ".4f")
+    y_intercept = result_matrix[0][0]
+    slope = result_matrix[1][0]
 
-    result = f"{y_intercept} + {slope}x"
-    return result
+    return f"{y_intercept:.4f} + {slope:.4f}x"

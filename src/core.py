@@ -1,8 +1,8 @@
 """This module contains the CPU core class.
 """
 
-import numpy as np
 from pathlib import Path
+import numpy as np
 from src.equations import piecewise_linear_interpolation as pli
 from src.equations import least_squares_transpose as lst
 
@@ -72,7 +72,6 @@ class Core:
 
         return np.array(x_points), np.array(y_points)
 
-
     def write_to_file(self, directory: str = "reports") -> None:
         """Write a core's calculations to file.
 
@@ -108,7 +107,7 @@ class Core:
                 )
 
             start_time = self.readings[0][0]
-            end_time = self.readings[len(self.readings)-1][0]
+            end_time = self.readings[len(self.readings) - 1][0]
             lst_eq = lst(x_matrix, y_matrix)
 
             file.write(f"{start_time}<=x<={end_time};y={lst_eq};least-squares\n")

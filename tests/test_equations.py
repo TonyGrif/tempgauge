@@ -4,9 +4,11 @@ import numpy as np
 from equations import piecewise_linear_interpolation
 from equations import least_squares_transpose
 
+
 @pytest.fixture
 def x_matrix():
     return np.array([[1, 0], [1, 30], [1, 60], [1, 90], [1, 120]])
+
 
 @pytest.fixture
 def y_matrix():
