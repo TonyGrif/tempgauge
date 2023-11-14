@@ -2,6 +2,7 @@
 
 ## Requirements
 * [Python 3.11](https://www.python.org/)
+* [NumPy](https://numpy.org/)
 
 ## Running Instructions
 This program can be run with the following command: `./main.py [text file]` in which the text file contains CPU temperature data in the following format with each new line signifying a new reading at a different time:

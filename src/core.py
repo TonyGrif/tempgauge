@@ -2,7 +2,9 @@
 """
 
 from pathlib import Path
-from src.piecewise import piecewise_linear_interpolation as pli
+import numpy as np
+from src.equations import piecewise_linear_interpolation as pli
+from src.equations import least_squares_transpose as lst
 
 
 class Core:
@@ -54,6 +56,22 @@ class Core:
         """
         self.readings.append(point)
 
+    def _to_numpy_arrays(self) -> tuple:
+        """Convert the reading points to x and y matricies.
+
+        Returns:
+            x_matrix (tuple[0]): The X matrix.
+            y_matrix (tuple[1]): The Y matrix.
+        """
+        x_points = []
+        y_points = []
+
+        for points in self.readings:
+            x_points.append([1, points[0]])
+            y_points.append([points[1]])
+
+        return np.array(x_points), np.array(y_points)
+
     def write_to_file(self, directory: str = "reports") -> None:
         """Write a core's calculations to file.
 
@@ -64,6 +82,8 @@ class Core:
             Path.mkdir(directory, parents=True)
         except FileExistsError:
             pass
+
+        x_matrix, y_matrix = self._to_numpy_arrays()
 
         with open(
             f"{directory}/core-{self.core_num}.txt", "w", encoding="UTF-8"
@@ -85,5 +105,11 @@ class Core:
                     + "interpolation"
                     + "\n"
                 )
+
+            start_time = self.readings[0][0]
+            end_time = self.readings[len(self.readings) - 1][0]
+            lst_eq = lst(x_matrix, y_matrix)
+
+            file.write(f"{start_time}<=x<={end_time};y={lst_eq};least-squares\n")
 
             file.close()
