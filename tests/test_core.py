@@ -50,6 +50,10 @@ class TestCore:
         assert "0.6333" in string
         assert "interpolation" in string
 
+        assert "67.4000" in string
+        assert "0.0567" in string
+        assert "least-squares" in string
+
     def test_write_to_file(self, core):
         assert core.core_num == 1
         assert not core.readings
@@ -69,4 +73,4 @@ class TestCore:
                 "0      <= x <=     30; y= 61.0000 + 0.6333x   ; interpolation"
                 in lines[0]
             )
-            assert "0<=x<=120;y=67.4000 + 0.0567x;least-squares" in lines[-1]
+            assert "0      <= x <=    120; y= 67.4000 + 0.0567x   ; least-squares" in lines[-1]
