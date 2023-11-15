@@ -7,6 +7,16 @@ from core import Core
 def core():
     return Core(1)
 
+@pytest.fixture
+def full_core():
+    core = Core(0)
+    core.add_reading((0, 61))
+    core.add_reading((30, 80))
+    core.add_reading((60, 62))
+    core.add_reading((90, 83))
+    core.add_reading((120, 68))
+    return core
+
 
 class TestCore:
     def test_core_num(self, core):
@@ -30,6 +40,15 @@ class TestCore:
 
         core.add_reading((60, 73))
         assert (60, 73) in core.readings
+        assert core.core_num == 1
+
+    def test_str(self, full_core):
+        string = str(full_core)
+        assert "0" in string
+        assert "30" in string
+        assert "61.0000" in string
+        assert "0.6333" in string
+        assert "interpolation" in string
 
     def test_write_to_file(self, core):
         assert core.core_num == 1
