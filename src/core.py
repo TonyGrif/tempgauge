@@ -72,6 +72,42 @@ class Core:
 
         return np.array(x_points), np.array(y_points)
 
+    def __str__(self) -> str:
+        """Return the string representation of this object.
+
+        Returns:
+            string (str): String representation
+        """
+        string = ""
+
+        for count, _ in enumerate(self.readings):
+            if count + 1 > len(self.readings) - 1:
+                break
+
+            # TODO: Too many variables
+            start_time = self.readings[count][0]
+            end_time = self.readings[count + 1][0]
+            start_temp = self.readings[count][1]
+            end_temp = self.readings[count + 1][1]
+            y_int, slope = pli(start_time, end_time, start_temp, end_temp)
+
+            string += (
+                f"{start_time: <6} <= x <= {end_time: >6}; "
+                + f"y = {y_int:.4f} + {slope:.4f}; interpolation\n"
+            )
+
+        x_matrix, y_matrix = self._to_numpy_arrays()
+        start_time = self.readings[0][0]
+        end_time = self.readings[len(self.readings) - 1][0]
+        y_int, slope = lst(x_matrix, y_matrix)
+
+        string += (
+            f"{start_time: <6} <= x <= {end_time: >6}; "
+            + f"y = {y_int:.4f} + {slope:.4f}; least-squares\n"
+        )
+
+        return string
+
     def write_to_file(self, directory: str = "reports") -> None:
         """Write a core's calculations to file.
 
@@ -83,33 +119,7 @@ class Core:
         except FileExistsError:
             pass
 
-        x_matrix, y_matrix = self._to_numpy_arrays()
-
         with open(
             f"{directory}/core-{self.core_num}.txt", "w", encoding="UTF-8"
         ) as file:
-            for count, _ in enumerate(self.readings):
-                if count + 1 > len(self.readings) - 1:
-                    break
-
-                start_time = self.readings[count][0]
-                end_time = self.readings[count + 1][0]
-                start_temp = self.readings[count][1]
-                end_temp = self.readings[count + 1][1]
-
-                pli_eq = pli(start_time, end_time, start_temp, end_temp)
-
-                file.write(
-                    f"{start_time: <6} <= x <= {end_time: >6}; "
-                    + f"y= {pli_eq: <20}; "
-                    + "interpolation"
-                    + "\n"
-                )
-
-            start_time = self.readings[0][0]
-            end_time = self.readings[len(self.readings) - 1][0]
-            lst_eq = lst(x_matrix, y_matrix)
-
-            file.write(f"{start_time}<=x<={end_time};y={lst_eq};least-squares\n")
-
-            file.close()
+            file.write(str(self))
