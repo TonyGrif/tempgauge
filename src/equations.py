@@ -34,7 +34,7 @@ def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:
         y_matrix (np.ndarray): The Y matrix.
 
     Returns:
-        result (string): The resulting linear equation.
+        values (tuple): The resulting y-intercept and slope.
     """
     x_transpose = np.transpose(x_matrix)
     xtx = np.dot(x_transpose, x_matrix)
@@ -44,4 +44,4 @@ def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:
     y_intercept = result_matrix[0][0]
     slope = result_matrix[1][0]
 
-    return f"{y_intercept:.4f} + {slope:.4f}x"
+    return (y_intercept, slope)

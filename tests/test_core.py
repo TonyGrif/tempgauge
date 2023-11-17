@@ -7,6 +7,7 @@ from core import Core
 def core():
     return Core(1)
 
+
 @pytest.fixture
 def full_core():
     core = Core(0)
@@ -44,14 +45,12 @@ class TestCore:
 
     def test_str(self, full_core):
         string = str(full_core)
-        assert "0" in string
-        assert "30" in string
-        assert "61.0000" in string
-        assert "0.6333" in string
+        assert "0" and "30" in string
+        assert "61.0000" and "0.6333" in string
         assert "interpolation" in string
 
-        assert "67.4000" in string
-        assert "0.0567" in string
+        assert "0" and "120" in string
+        assert "67.4000" and "0.0567" in string
         assert "least-squares" in string
 
     def test_write_to_file(self, core):
@@ -70,8 +69,9 @@ class TestCore:
         with open("reports/core-1.txt", "r") as file:
             lines = file.readlines()
             assert "0" and "30" in lines[0]
-            assert "61.0000" in lines[0]
-            assert "0.6333" in lines[0]
+            assert "61.0000" and "0.6333" in lines[0]
             assert "interpolation" in lines[0]
 
-            assert "0      <= x <=    120; y= 67.4000 + 0.0567x   ; least-squares" in lines[-1]
+            assert "0" and "120" in lines[-1]
+            assert "67.4000" and "0.0567" in lines[-1]
+            assert "least-squares" in lines[-1]

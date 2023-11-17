@@ -79,12 +79,12 @@ class Core:
             string (str): String representation
         """
         string = ""
-        
+
         for count, _ in enumerate(self.readings):
             if count + 1 > len(self.readings) - 1:
                 break
 
-            #TODO: Too many variables
+            # TODO: Too many variables
             start_time = self.readings[count][0]
             end_time = self.readings[count + 1][0]
             start_temp = self.readings[count][1]
@@ -93,17 +93,18 @@ class Core:
 
             string += (
                 f"{start_time: <6} <= x <= {end_time: >6}; "
-                + f"y = {y_int:.4f} + {slope:.4f}; "
-                + f"interpolation"
-                + "\n"
+                + f"y = {y_int:.4f} + {slope:.4f}; interpolation\n"
             )
 
         x_matrix, y_matrix = self._to_numpy_arrays()
         start_time = self.readings[0][0]
         end_time = self.readings[len(self.readings) - 1][0]
-        lst_eq = lst(x_matrix, y_matrix)
+        y_int, slope = lst(x_matrix, y_matrix)
 
-        string += f"{start_time: <6} <= x <= {end_time: >6}; y= {lst_eq: <20}; least-squares\n"
+        string += (
+            f"{start_time: <6} <= x <= {end_time: >6}; "
+            + f"y = {y_int:.4f} + {slope:.4f}; least-squares\n"
+        )
 
         return string
 
@@ -118,7 +119,6 @@ class Core:
         except FileExistsError:
             pass
 
-        x_matrix, y_matrix = self._to_numpy_arrays()
         with open(
             f"{directory}/core-{self.core_num}.txt", "w", encoding="UTF-8"
         ) as file:
