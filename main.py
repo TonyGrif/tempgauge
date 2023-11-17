@@ -8,7 +8,6 @@ from pathlib import Path
 
 from parse_temps import parse_raw_temps
 from src.core import Core
-from src.piecewise import piecewise_linear_interpolation
 
 
 def main():
@@ -48,28 +47,7 @@ def main():
                 cores[count].add_reading((f_temps[0], temp))
 
     for core in cores:
-        print(f"Core {core.core_num} \n=======")
-
-        for count, _ in enumerate(core.readings):
-            if count + 1 > len(core.readings) - 1:
-                break
-
-            start_time = core.readings[count][0]
-            end_time = core.readings[count + 1][0]
-            start_temp = core.readings[count][1]
-            end_temp = core.readings[count + 1][1]
-
-            pli_eq = piecewise_linear_interpolation(
-                start_time, end_time, start_temp, end_temp
-            )
-
-            print(
-                f"{start_time: <6} <= x <= {end_time: >6}; "
-                + f"y= {pli_eq: <20}; "
-                + "interpolation"
-            )
-
-        print("\n")
+        core.write_to_file()
 
     return
 
