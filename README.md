@@ -1,7 +1,7 @@
 # CPU Temperature Analysis
 
 ## Requirements
-* [Python 3.11](https://www.python.org/)
+* [Python 3.9+](https://www.python.org/)
 * [NumPy](https://numpy.org/)
 
 ## Running Instructions

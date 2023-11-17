@@ -115,7 +115,7 @@ class Core:
             directory (str): The output directory, defaults to reports/
         """
         try:
-            Path.mkdir(directory, parents=True)
+            Path.mkdir(Path(directory), parents=True)
         except FileExistsError:
             pass
 
