@@ -1,5 +1,6 @@
 import pytest
 import numpy as np
+from math import isclose
 
 from equations import piecewise_linear_interpolation
 from equations import least_squares_transpose
@@ -18,13 +19,16 @@ def y_matrix():
 class TestEquations:
     def test_piecewise_linear_interpolation(self):
         result = piecewise_linear_interpolation(30, 60, 80, 62)
-        assert result == "98.0000 + -0.6000x"
+        assert isclose(result[0], 98.0000, rel_tol=1e-4) 
+        assert isclose(result[1], -0.6000, rel_tol=1e-4)
 
         result = piecewise_linear_interpolation(30, 60, 77, 60)
-        assert result == "94.0000 + -0.5667x"
+        assert isclose(result[0], 94.0000, rel_tol=1e-4) 
+        assert isclose(result[1], -0.5667, rel_tol=1e-4)
 
         result = piecewise_linear_interpolation(0, 30, 61, 80)
-        assert result == "61.0000 + 0.6333x"
+        assert isclose(result[0], 61.0000, rel_tol=1e-4) 
+        assert isclose(result[1], 0.6333, rel_tol=1e-4)
 
     def test_least_squares_transpose(self, x_matrix, y_matrix):
         result = least_squares_transpose(x_matrix, y_matrix)

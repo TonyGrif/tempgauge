@@ -17,13 +17,13 @@ def piecewise_linear_interpolation(
         y_one (int): Ending temperature.
 
     Returns:
-        equation (string): The resulting equation.
+        values (tuple): The resulting y-intercept and slope.
     """
     slope = (y_one - y_zero) / (x_one - x_zero)
 
     y_intercept = y_zero - (slope * x_zero)
 
-    return f"{y_intercept:.4f} + {slope:.4f}x"
+    return (y_intercept, slope)
 
 
 def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:

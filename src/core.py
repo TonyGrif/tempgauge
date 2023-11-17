@@ -84,15 +84,16 @@ class Core:
             if count + 1 > len(self.readings) - 1:
                 break
 
+            #TODO: Too many variables
             start_time = self.readings[count][0]
             end_time = self.readings[count + 1][0]
             start_temp = self.readings[count][1]
             end_temp = self.readings[count + 1][1]
-            pli_eq = pli(start_time, end_time, start_temp, end_temp)
+            y_int, slope = pli(start_time, end_time, start_temp, end_temp)
 
             string += (
                 f"{start_time: <6} <= x <= {end_time: >6}; "
-                + f"y= {pli_eq: <20}; "
+                + f"y = {y_int:.4f} + {slope:.4f}; "
                 + f"interpolation"
                 + "\n"
             )

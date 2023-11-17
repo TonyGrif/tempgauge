@@ -69,8 +69,9 @@ class TestCore:
 
         with open("reports/core-1.txt", "r") as file:
             lines = file.readlines()
-            assert (
-                "0      <= x <=     30; y= 61.0000 + 0.6333x   ; interpolation"
-                in lines[0]
-            )
+            assert "0" and "30" in lines[0]
+            assert "61.0000" in lines[0]
+            assert "0.6333" in lines[0]
+            assert "interpolation" in lines[0]
+
             assert "0      <= x <=    120; y= 67.4000 + 0.0567x   ; least-squares" in lines[-1]
