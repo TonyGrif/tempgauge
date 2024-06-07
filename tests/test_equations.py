@@ -2,8 +2,8 @@ import pytest
 import numpy as np
 from math import isclose
 
-from equations import piecewise_linear_interpolation
-from equations import least_squares_transpose
+from src.equations import piecewise_linear_interpolation
+from src.equations import least_squares_transpose
 
 
 @pytest.fixture

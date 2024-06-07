@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "cpu-temperature"
+version = "0.1.0"
+description = "Analyzes CPU temperature readings over time"
+authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    {include = "src"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+numpy = "^1.26.4"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.1"
+pytest-cov = "^5.0.0"
+tox = "^4.15.0"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.10.0"
+black = "^24.4.2"
+isort = "^5.13.2"
+pylint = "^3.2.2"
+ruff = "^0.4.4"
+flake8-pyproject = "^1.2.3"
+poethepoet = "^0.26.1"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+log_cli = "True"
+
+[tool.mypy]
+files = ["src"]
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "E701"]
+
+[tool.poe.tasks]
+test = "pytest --cov --cov-report term-missing"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
