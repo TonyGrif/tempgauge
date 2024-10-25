@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cpu-temperature"
-version = "0.1.0"
+version = "0.5.2"
 description = "Analyzes CPU temperature readings over time"
 authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
 license = "MIT"
@@ -40,6 +40,24 @@ profile = "black"
 [tool.flake8]
 max-line-length = 88
 extend-ignore = ["E203", "E701"]
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    requires =
+        tox>=4
+    env_list = py{39, 310, 311, 312}
+    isolated_build = true
+
+    [testenv]
+    description = Run the PyTest Suite.
+    skip_install = true
+    deps = poetry
+    commands_pre =
+        poetry install --only main,test
+    commands =
+        poetry run poe test
+"""
 
 [tool.poe.tasks]
 test = "pytest --cov --cov-report term-missing"
