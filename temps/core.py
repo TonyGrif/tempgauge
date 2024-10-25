@@ -1,37 +1,35 @@
-"""This module contains the CPU core class.
-"""
+"""This module contains the CPU core class."""
 
 from pathlib import Path
+from typing import Tuple
+
 import numpy as np
-from .equations import piecewise_linear_interpolation as pli
+
 from .equations import least_squares_transpose as lst
+from .equations import piecewise_linear_interpolation as pli
 
 
 class Core:
-    """Class containing data on a CPU core.
+    """Data structure containing data on a CPU core.
 
     Attributes:
-        core_num (int): The CPU core number.
-        readings (list): List of tuples of CPU readings.
+        core_num: The CPU core number.
+        readings: List of tuples of CPU readings.
     """
 
     def __init__(self, c_num: int) -> None:
         """Constructor for the Core class
 
-        Parameters:
-            c_num (int): The CPU core number.
-            readings (list): List of tuples containing readings.
+        Args:
+            c_num: The CPU core number.
         """
         self.core_num = c_num
         self.readings = []
+        """Collection of tuples containing (time, temperature) data."""
 
     @property
     def core_num(self) -> int:
-        """Get the core number of this Core.
-
-        Returns:
-            num (int): The core number.
-        """
+        """The core number this Core object."""
         return self._core_num
 
     @core_num.setter
@@ -39,7 +37,7 @@ class Core:
         """Set the core number of this Core.
 
         Parameters:
-            num (int): The core number.
+            num: The core number.
 
         Raises:
             AttributeError: If negative number is passed.
@@ -48,15 +46,15 @@ class Core:
             raise AttributeError("Negative core number is not allowed")
         self._core_num = num
 
-    def add_reading(self, point: tuple) -> None:
+    def add_reading(self, point: Tuple[int, int]) -> None:
         """Add a new reading to the reading list.
 
-        Parameters:
-            point (tuple): Tuple containing (time, temperature) readings.
+        Args:
+            point: Tuple containing (time, temperature) readings.
         """
         self.readings.append(point)
 
-    def _to_numpy_arrays(self) -> tuple:
+    def _to_numpy_arrays(self) -> Tuple:
         """Convert the reading points to x and y matricies.
 
         Returns:
@@ -112,7 +110,7 @@ class Core:
         """Write a core's calculations to file.
 
         Parameters:
-            directory (str): The output directory, defaults to reports/
+            directory: The output directory.
         """
         try:
             Path.mkdir(Path(directory), parents=True)
