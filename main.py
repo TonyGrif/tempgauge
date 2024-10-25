@@ -6,8 +6,8 @@
 import argparse
 from pathlib import Path
 
+from gauge import Core
 from parse_temps import parse_raw_temps
-from temps import Core
 
 
 def main():

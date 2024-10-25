@@ -2,7 +2,7 @@ import os.path
 
 import pytest
 
-from temps.core import Core
+from gauge.core import Core
 
 
 @pytest.fixture

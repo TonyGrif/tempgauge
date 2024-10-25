@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "cpu-temperature"
+name = "tempgauge"
 version = "1.0.0"
 description = "Analyzes CPU temperature readings over time"
 authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [
-    {include = "temps"},
+    {include = "gauge"},
 ]
 
 [tool.poetry.dependencies]
@@ -61,15 +61,15 @@ legacy_tox_ini = """
 
 [tool.poe.tasks]
 test = "pytest --cov --cov-report term-missing"
-docs = "pdoc temps/ --docformat google"
-pubdocs = "pdoc temps/ -o docs/ --docformat google"
-_black = "black main.py temps/ tests/"
-_isort = "isort main.py temps/ tests/"
+docs = "pdoc gauge/ --docformat google"
+pubdocs = "pdoc gauge/ -o docs/ --docformat google"
+_black = "black main.py gauge/ tests/"
+_isort = "isort main.py gauge/ tests/"
 format = ["_black", "_isort"]
-_mypy = "mypy main.py temps/"
-_pylint = "pylint main.py temps"
-_ruff = "ruff check main.py temps/"
-_flake = "flake8 main.py temps/"
+_mypy = "mypy main.py gauge/"
+_pylint = "pylint main.py gauge"
+_ruff = "ruff check main.py gauge/"
+_flake = "flake8 main.py gauge/"
 lint = ["_mypy", "_pylint", "_ruff", "_flake"]
 
 
