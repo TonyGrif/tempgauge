@@ -1,7 +1,7 @@
 """This module contains the CPU core class."""
 
 from pathlib import Path
-from typing import Tuple
+from typing import List, Tuple
 
 import numpy as np
 
@@ -24,7 +24,7 @@ class Core:
             c_num: The CPU core number.
         """
         self.core_num = c_num
-        self.readings = []
+        self.readings: List[Tuple] = []
         """Collection of tuples containing (time, temperature) data."""
 
     @property
