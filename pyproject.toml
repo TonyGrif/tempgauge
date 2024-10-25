@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cpu-temperature"
-version = "0.5.2"
+version = "1.0.0"
 description = "Analyzes CPU temperature readings over time"
 authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
 license = "MIT"
