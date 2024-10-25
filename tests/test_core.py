@@ -1,5 +1,7 @@
-import pytest
 import os.path
+
+import pytest
+
 from temps.core import Core
 
 
