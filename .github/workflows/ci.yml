@@ -1,4 +1,4 @@
-name: Python Application
+name: Contiuous Integration
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python versions for tox
+    - name: Set up Python Versions
       uses: actions/setup-python@v4
       with:
         python-version: |
@@ -36,6 +36,7 @@ jobs:
     - name: Install Dependencies
       run: |
         poetry install --only test
+    - name: Lint with Poe
+      run: poetry run poe lint
     - name: Test with Tox and PyTest
-      run: |
-        poetry run tox
+      run: poetry run tox
