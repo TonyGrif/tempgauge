@@ -3,8 +3,8 @@
 
 from pathlib import Path
 import numpy as np
-from src.equations import piecewise_linear_interpolation as pli
-from src.equations import least_squares_transpose as lst
+from .equations import piecewise_linear_interpolation as pli
+from .equations import least_squares_transpose as lst
 
 
 class Core:
