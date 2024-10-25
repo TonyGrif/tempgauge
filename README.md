@@ -1,4 +1,4 @@
-# CPU Temperature Analysis
+# Tempgauge
 This python project utilizes piecewise linear interpolation and
 least-squares approximation to analyze CPU temperature readings over time.
 
