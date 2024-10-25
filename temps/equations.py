@@ -2,8 +2,9 @@
 least squares approximation functionality.
 """
 
-import numpy as np
 from typing import Tuple
+
+import numpy as np
 
 
 def piecewise_linear_interpolation(
@@ -27,7 +28,9 @@ def piecewise_linear_interpolation(
     return (y_intercept, slope)
 
 
-def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> Tuple[float, float]:
+def least_squares_transpose(
+    x_matrix: np.ndarray, y_matrix: np.ndarray
+) -> Tuple[float, float]:
     """Calculate the discrete least squares approximation for given points.
 
     Parameters:

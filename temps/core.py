@@ -82,7 +82,6 @@ class Core:
             if count + 1 > len(self.readings) - 1:
                 break
 
-            # TODO: Too many variables
             start_time = self.readings[count][0]
             end_time = self.readings[count + 1][0]
             start_temp = self.readings[count][1]

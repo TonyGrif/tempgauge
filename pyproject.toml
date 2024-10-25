@@ -62,6 +62,15 @@ legacy_tox_ini = """
 [tool.poe.tasks]
 test = "pytest --cov --cov-report term-missing"
 docs = "pdoc temps/ --docformat google"
+_black = "black main.py temps/ tests/"
+_isort = "isort main.py temps/ tests/"
+format = ["_black", "_isort"]
+_mypy = "mypy main.py temps/"
+_pylint = "pylint main.py temps"
+_ruff = "ruff check main.py temps/"
+_flake = "flake8 main.py temps/"
+lint = ["_mypy", "_pylint", "_ruff", "_flake"]
+
 
 [build-system]
 requires = ["poetry-core"]

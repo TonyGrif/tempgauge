@@ -1,9 +1,9 @@
-import pytest
-import numpy as np
 from math import isclose
 
-from temps.equations import piecewise_linear_interpolation
-from temps.equations import least_squares_transpose
+import numpy as np
+import pytest
+
+from temps.equations import least_squares_transpose, piecewise_linear_interpolation
 
 
 @pytest.fixture
