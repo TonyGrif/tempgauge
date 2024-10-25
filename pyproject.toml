@@ -27,6 +27,9 @@ ruff = "^0.4.4"
 flake8-pyproject = "^1.2.3"
 poethepoet = "^0.26.1"
 
+[tool.poetry.group.docs.dependencies]
+pdoc = "^15.0.0"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 log_cli = "True"
