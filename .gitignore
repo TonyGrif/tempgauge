@@ -164,3 +164,6 @@ cython_debug/
 
 # Report directory
 reports/
+
+# Documentation from PDoc
+docs/
