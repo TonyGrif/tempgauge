@@ -3,11 +3,12 @@ least squares approximation functionality.
 """
 
 import numpy as np
+from typing import Tuple
 
 
 def piecewise_linear_interpolation(
     x_zero: int, x_one: int, y_zero: int, y_one: int
-) -> str:
+) -> Tuple[float, float]:
     """Calculate the piecewise linear interpolation for two points.
 
     Paramaters:
@@ -26,7 +27,7 @@ def piecewise_linear_interpolation(
     return (y_intercept, slope)
 
 
-def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> str:
+def least_squares_transpose(x_matrix: np.ndarray, y_matrix: np.ndarray) -> Tuple[float, float]:
     """Calculate the discrete least squares approximation for given points.
 
     Parameters:
