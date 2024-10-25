@@ -1,6 +1,6 @@
 import pytest
 import os.path
-from src.core import Core
+from temps.core import Core
 
 
 @pytest.fixture

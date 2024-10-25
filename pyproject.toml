@@ -6,7 +6,7 @@ authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [
-    {include = "src"},
+    {include = "temps"},
 ]
 
 [tool.poetry.dependencies]
@@ -33,9 +33,6 @@ pdoc = "^15.0.0"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 log_cli = "True"
-
-[tool.mypy]
-files = ["src"]
 
 [tool.isort]
 profile = "black"
