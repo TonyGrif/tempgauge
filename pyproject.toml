@@ -61,6 +61,7 @@ legacy_tox_ini = """
 
 [tool.poe.tasks]
 test = "pytest --cov --cov-report term-missing"
+docs = "pdoc temps/ --docformat google"
 
 [build-system]
 requires = ["poetry-core"]
