@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tempgauge"
-version = "1.0.0"
+version = "1.0.1"
 description = "Analyzes CPU temperature readings over time"
 authors = ["TonyGrif <TonyGriffin2000@gmail.com>"]
 license = "MIT"
