@@ -12,9 +12,13 @@ dependencies = [
     "numpy (>=2.0.0,<3.0.0)"
 ]
 
+[project.scripts]
+temps = "temps.__main__:main"
+
 [tool.poetry]
 packages = [
     {include = "gauge"},
+    {include = "temps"},
 ]
 
 [tool.poetry.group.test.dependencies]
