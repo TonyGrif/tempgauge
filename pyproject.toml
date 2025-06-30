@@ -1,6 +1,6 @@
 [project]
 name = "tempgauge"
-version = "1.0.1"
+version = "1.1"
 description = "Analyzes CPU temperature readings over time"
 authors = [
     {name = "TonyGrif",email = "TonyGriffin2000@gmail.com"}
