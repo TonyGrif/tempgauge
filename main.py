@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-"""This is the main module for the cpu-temperature project.
-"""
+"""This is the main module for the cpu-temperature project."""
 
 import argparse
 from pathlib import Path
