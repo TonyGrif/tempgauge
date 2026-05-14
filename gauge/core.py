@@ -1,7 +1,6 @@
 """This module contains the CPU core class."""
 
 from pathlib import Path
-from typing import List, Tuple
 
 import numpy as np
 
@@ -24,7 +23,7 @@ class Core:
             c_num: The CPU core number.
         """
         self.core_num = c_num
-        self.readings: List[Tuple] = []
+        self.readings: list[tuple[float, float]] = []
         """Collection of tuples containing (time, temperature) data."""
 
     @property
@@ -36,7 +35,7 @@ class Core:
     def core_num(self, num: int) -> None:
         """Set the core number of this Core.
 
-        Parameters:
+        Args:
             num: The core number.
 
         Raises:
@@ -46,7 +45,7 @@ class Core:
             raise AttributeError("Negative core number is not allowed")
         self._core_num = num
 
-    def add_reading(self, point: Tuple[int, int]) -> None:
+    def add_reading(self, point: tuple[float, float]) -> None:
         """Add a new reading to the reading list.
 
         Args:
@@ -54,19 +53,15 @@ class Core:
         """
         self.readings.append(point)
 
-    def _to_numpy_arrays(self) -> Tuple:
-        """Convert the reading points to x and y matricies.
+    def _to_numpy_arrays(self) -> tuple:
+        """Convert the reading points to x and y matrices.
 
         Returns:
             x_matrix (tuple[0]): The X matrix.
             y_matrix (tuple[1]): The Y matrix.
         """
-        x_points = []
-        y_points = []
-
-        for points in self.readings:
-            x_points.append([1, points[0]])
-            y_points.append([points[1]])
+        x_points = [[1, t] for t, _ in self.readings]
+        y_points = [[temp] for _, temp in self.readings]
 
         return np.array(x_points), np.array(y_points)
 
@@ -78,16 +73,10 @@ class Core:
         """
         string = ""
 
-        for count, _ in enumerate(self.readings):
-            if count + 1 > len(self.readings) - 1:
-                break
-
-            start_time = self.readings[count][0]
-            end_time = self.readings[count + 1][0]
-            start_temp = self.readings[count][1]
-            end_temp = self.readings[count + 1][1]
+        for (start_time, start_temp), (end_time, end_temp) in zip(
+            self.readings, self.readings[1:]
+        ):
             y_int, slope = pli(start_time, end_time, start_temp, end_temp)
-
             string += (
                 f"{start_time: <6} <= x <= {end_time: >6}; "
                 + f"y = {y_int:.4f} + {slope:.4f}; interpolation\n"
@@ -95,7 +84,7 @@ class Core:
 
         x_matrix, y_matrix = self._to_numpy_arrays()
         start_time = self.readings[0][0]
-        end_time = self.readings[len(self.readings) - 1][0]
+        end_time = self.readings[-1][0]
         y_int, slope = lst(x_matrix, y_matrix)
 
         string += (
@@ -108,7 +97,7 @@ class Core:
     def write_to_file(self, directory: str = "reports") -> None:
         """Write a core's calculations to file.
 
-        Parameters:
+        Args:
             directory: The output directory.
         """
         try:
