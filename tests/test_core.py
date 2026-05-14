@@ -2,7 +2,7 @@ import os.path
 
 import pytest
 
-from gauge.core import Core
+from tempgauge.core import Core
 
 
 @pytest.fixture

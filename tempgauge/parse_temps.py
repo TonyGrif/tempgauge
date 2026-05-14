@@ -26,5 +26,6 @@ def parse_raw_temps(
     split_re = re.compile(r"[^0-9]*\s+|[^0-9]*$")
 
     for step, line in enumerate(original_temps):
-        yield (step * step_size), \
-              [float(entry) for entry in split_re.split(line) if len(entry) > 0]
+        yield (step * step_size), [
+            float(entry) for entry in split_re.split(line) if len(entry) > 0
+        ]

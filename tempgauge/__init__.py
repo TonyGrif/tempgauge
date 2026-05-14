@@ -3,7 +3,7 @@ CPU Core data.
 
 Example Usage:
 .. code-block:: python
-    from temps import Core
+    from tempgauge import Core
 
     core = Core(CORE_NUMBER)
     core.add_reading((TIME, TEMPERATURE))

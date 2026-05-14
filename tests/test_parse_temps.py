@@ -1,6 +1,6 @@
 import io
 
-from parse_temps import parse_raw_temps
+from tempgauge.parse_temps import parse_raw_temps
 
 
 class TestParseRawTemps:

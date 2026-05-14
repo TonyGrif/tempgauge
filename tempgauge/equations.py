@@ -37,9 +37,9 @@ def least_squares_transpose(
 ) -> tuple[float, float]:
     """Calculate the discrete least squares approximation for given points.
 
-    Parameters:
-        x_matrix (np.ndarray): The X matrix.
-        y_matrix (np.ndarray): The Y matrix.
+    Args:
+        x_matrix: The X matrix.
+        y_matrix: The Y matrix.
 
     Returns:
         values (tuple): The resulting y-intercept and slope.

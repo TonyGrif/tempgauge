@@ -3,7 +3,7 @@ from math import isclose
 import numpy as np
 import pytest
 
-from gauge.equations import least_squares_transpose, piecewise_linear_interpolation
+from tempgauge.equations import least_squares_transpose, piecewise_linear_interpolation
 
 
 @pytest.fixture
