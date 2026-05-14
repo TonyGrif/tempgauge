@@ -17,6 +17,10 @@ def y_matrix():
 
 
 class TestEquations:
+    def test_piecewise_linear_interpolation_equal_x(self):
+        with pytest.raises(ValueError):
+            piecewise_linear_interpolation(30, 30, 80, 62)
+
     def test_piecewise_linear_interpolation(self):
         result = piecewise_linear_interpolation(30, 60, 80, 62)
         assert isclose(result[0], 98.0000, rel_tol=1e-4)
