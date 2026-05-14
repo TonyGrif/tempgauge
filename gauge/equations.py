@@ -2,25 +2,29 @@
 least squares approximation functionality.
 """
 
-from typing import Tuple
-
 import numpy as np
 
 
 def piecewise_linear_interpolation(
-    x_zero: int, x_one: int, y_zero: int, y_one: int
-) -> Tuple[float, float]:
+    x_zero: float, x_one: float, y_zero: float, y_one: float
+) -> tuple[float, float]:
     """Calculate the piecewise linear interpolation for two points.
 
-    Paramaters:
-        x_zero (int): Starting time point.
-        x_one (int): Ending time point.
-        y_zero (int): Starting temperature.
-        y_one (int): Ending temperature.
+    Args:
+        x_zero: Starting time point.
+        x_one: Ending time point.
+        y_zero: Starting temperature.
+        y_one: Ending temperature.
 
     Returns:
         values (tuple): The resulting y-intercept and slope.
+
+    Raises:
+        ValueError: If x_zero and x_one are equal.
     """
+    if x_zero == x_one:
+        raise ValueError("x_zero and x_one must be distinct")
+
     slope = (y_one - y_zero) / (x_one - x_zero)
 
     y_intercept = y_zero - (slope * x_zero)
@@ -30,7 +34,7 @@ def piecewise_linear_interpolation(
 
 def least_squares_transpose(
     x_matrix: np.ndarray, y_matrix: np.ndarray
-) -> Tuple[float, float]:
+) -> tuple[float, float]:
     """Calculate the discrete least squares approximation for given points.
 
     Parameters:
