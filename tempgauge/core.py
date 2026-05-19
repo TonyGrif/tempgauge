@@ -4,7 +4,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .equations import least_squares_transpose as lst
+from .equations import least_squares_fit as lsf
 from .equations import piecewise_linear_interpolation as pli
 
 
@@ -38,7 +38,7 @@ class Core:
             num: The core number.
 
         Raises:
-            AttributeError: If negative number is passed.
+            ValueError: If negative number is passed.
         """
         if num < 0:
             raise ValueError("Negative core number is not allowed")
@@ -73,28 +73,29 @@ class Core:
         if len(self.readings) < 2:
             return ""
 
-        string = ""
+        lines = []
 
         for (start_time, start_temp), (end_time, end_temp) in zip(
             self.readings, self.readings[1:]
         ):
             y_int, slope = pli(start_time, end_time, start_temp, end_temp)
-            string += (
+            sign = "+" if slope >= 0 else "-"
+            lines.append(
                 f"{start_time: <6} <= x <= {end_time: >6}; "
-                + f"y = {y_int:.4f} + {slope:.4f}; interpolation\n"
+                f"y = {y_int:.4f} {sign} {abs(slope):.4f}; interpolation"
             )
 
         x_matrix, y_matrix = self._to_numpy_arrays()
         start_time = self.readings[0][0]
         end_time = self.readings[-1][0]
-        y_int, slope = lst(x_matrix, y_matrix)
-
-        string += (
+        y_int, slope = lsf(x_matrix, y_matrix)
+        sign = "+" if slope >= 0 else "-"
+        lines.append(
             f"{start_time: <6} <= x <= {end_time: >6}; "
-            + f"y = {y_int:.4f} + {slope:.4f}; least-squares\n"
+            f"y = {y_int:.4f} {sign} {abs(slope):.4f}; least-squares"
         )
 
-        return string
+        return "\n".join(lines) + "\n"
 
     def write_to_file(self, directory: str | Path = "reports") -> None:
         """Write a core's calculations to file.
@@ -105,6 +106,6 @@ class Core:
         Path(directory).mkdir(parents=True, exist_ok=True)
 
         with open(
-            f"{directory}/core-{self.core_num}.txt", "w", encoding="UTF-8"
+            Path(directory) / f"core-{self.core_num}.txt", "w", encoding="UTF-8"
         ) as file:
             file.write(str(self))

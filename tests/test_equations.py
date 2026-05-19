@@ -3,7 +3,7 @@ from math import isclose
 import numpy as np
 import pytest
 
-from tempgauge.equations import least_squares_transpose, piecewise_linear_interpolation
+from tempgauge.equations import least_squares_fit, piecewise_linear_interpolation
 
 
 @pytest.fixture
@@ -34,22 +34,22 @@ class TestEquations:
         assert isclose(result[0], 61.0000, rel_tol=1e-4)
         assert isclose(result[1], 0.6333, rel_tol=1e-4)
 
-    def test_least_squares_transpose(self, x_matrix, y_matrix):
-        result = least_squares_transpose(x_matrix, y_matrix)
+    def test_least_squares_fit(self, x_matrix, y_matrix):
+        result = least_squares_fit(x_matrix, y_matrix)
         assert isclose(result[0], 67.4000, rel_tol=1e-4)
-        # Odd case, equal right up to the 4th decimal place
+        # rel_tol=1e-3 because 0.0567 only matches to 3 significant figures
         assert isclose(result[1], 0.0567, rel_tol=1e-3)
 
         x_matrix = np.array([[1, 0], [1, 1], [1, 2]])
         y_matrix = np.array([[0], [1], [4]])
 
-        result = least_squares_transpose(x_matrix, y_matrix)
+        result = least_squares_fit(x_matrix, y_matrix)
         assert isclose(result[0], -0.3333, rel_tol=1e-4)
         assert isclose(result[1], 2.0000, rel_tol=1e-4)
 
         x_matrix = np.array([[1, -2], [1, -1], [1, 0]])
         y_matrix = np.array([[4], [1], [0]])
 
-        result = least_squares_transpose(x_matrix, y_matrix)
+        result = least_squares_fit(x_matrix, y_matrix)
         assert isclose(result[0], -0.3333, rel_tol=1e-4)
         assert isclose(result[1], -2.0000, rel_tol=1e-4)

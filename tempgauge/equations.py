@@ -2,6 +2,8 @@
 least squares approximation functionality.
 """
 
+import math
+
 import numpy as np
 
 
@@ -22,7 +24,7 @@ def piecewise_linear_interpolation(
     Raises:
         ValueError: If x_zero and x_one are equal.
     """
-    if x_zero == x_one:
+    if math.isclose(x_zero, x_one):
         raise ValueError("x_zero and x_one must be distinct")
 
     slope = (y_one - y_zero) / (x_one - x_zero)
@@ -32,7 +34,7 @@ def piecewise_linear_interpolation(
     return (y_intercept, slope)
 
 
-def least_squares_transpose(
+def least_squares_fit(
     x_matrix: np.ndarray, y_matrix: np.ndarray
 ) -> tuple[float, float]:
     """Calculate the discrete least squares approximation for given points.
