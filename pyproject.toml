@@ -7,9 +7,9 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<4"
 dependencies = [
-    "numpy (>=2.1.0,<3.0.0)"
+    "numpy (>=2.2.6,<2.3.0)"
 ]
 
 [tool.poetry]
@@ -21,17 +21,17 @@ packages = [
 tempgauge = "tempgauge.__main__:main"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.4.1"
-pytest-cov = "^6.2.1"
-tox = "^4.27.0"
+pytest = "^9.0.3"
+pytest-cov = "^7.1.0"
+tox = "^4.54.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.16.1"
-ruff = "^0.12.1"
-poethepoet = "^0.36.0"
+mypy = "^2.1.0"
+ruff = "^0.15.13"
+poethepoet = "^0.46.0"
 
 [tool.poetry.group.docs.dependencies]
-pdoc = "^15.0.4"
+pdoc = "^16.0.0"
 
 [tool.ruff]
 line-length = 88
@@ -67,5 +67,5 @@ _ruff = "ruff check tempgauge/ tests/"
 lint = ["_mypy", "_ruff"]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=2.4.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"

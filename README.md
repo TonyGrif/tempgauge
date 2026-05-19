@@ -3,8 +3,8 @@ This python project utilizes piecewise linear interpolation and
 least-squares approximation to analyze CPU temperature readings over time.
 
 ## Requirements
-* [Poetry](https://python-poetry.org/)
-* [Python 3.9+](https://www.python.org/)
+* [Poetry 2.1.3+](https://python-poetry.org/)
+* [Python 3.10+](https://www.python.org/)
 
 ## Running Instructions
 First, install the package:
