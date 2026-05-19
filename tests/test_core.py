@@ -30,7 +30,7 @@ class TestCore:
         assert core.core_num == 4
         assert not core.readings
 
-        with pytest.raises(AttributeError):
+        with pytest.raises(ValueError):
             core.core_num = -3
             assert not core.readings
 
