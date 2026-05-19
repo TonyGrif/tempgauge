@@ -3,12 +3,26 @@ This python project utilizes piecewise linear interpolation and
 least-squares approximation to analyze CPU temperature readings over time.
 
 ## Requirements
+* [Poetry](https://python-poetry.org/)
 * [Python 3.9+](https://www.python.org/)
-* [NumPy](https://numpy.org/)
 
 ## Running Instructions
-This program can be run with the following command: `./main.py [text file]`
-in which the text file contains CPU temperature data in the following format
+First, install the package:
+```
+poetry install
+```
+
+This program can then be run with:
+```
+poetry run tempgauge [text file]
+```
+
+Alternatively, activate the virtual environment first with `poetry shell`, then run:
+```
+tempgauge [text file]
+```
+
+The text file contains CPU temperature data in the following format,
 with each new line signifying a new reading at a different time:
 ```
 [core1 temp] [core2 temp] ... [coreN temp]
@@ -22,7 +36,7 @@ message will be outputted: `usage: cpu-temperature [-h] txt_file`
 Invalid text file formatting will not be checked for and will result in undefined behavior.
 
 ## Sample Execution & Output
-When this program is run with `./main.py resources/sample.txt`, four output
+When this program is run with `tempgauge resources/sample.txt`, four output
 files will be created, one for each core following the naming convention of `core-{core_number}.txt`.
 As an example, `core-0.txt` will contain the following:
 ```
@@ -33,7 +47,7 @@ As an example, `core-0.txt` will contain the following:
 0      <= x <=    120; y = 67.4000 + 0.0567; least-squares
 ```
 
-When this program is run with `./main.py resources/sensors-with-label.txt`,
+When this program is run with `tempgauge resources/sensors-with-label.txt`,
 four output files with the aforementioned naming convention will be created.
 `core-0.txt` will be populated with the following lines:
 ```
