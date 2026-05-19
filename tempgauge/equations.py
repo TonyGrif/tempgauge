@@ -5,6 +5,7 @@ least squares approximation functionality.
 import math
 
 import numpy as np
+import numpy.typing as npt
 
 
 def piecewise_linear_interpolation(
@@ -35,7 +36,7 @@ def piecewise_linear_interpolation(
 
 
 def least_squares_fit(
-    x_matrix: np.ndarray, y_matrix: np.ndarray
+    x_matrix: npt.NDArray[np.float64], y_matrix: npt.NDArray[np.float64]
 ) -> tuple[float, float]:
     """Calculate the discrete least squares approximation for given points.
 

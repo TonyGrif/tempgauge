@@ -36,8 +36,11 @@ pdoc = "^16.0.0"
 [tool.ruff]
 line-length = 88
 
+[tool.mypy]
+strict = true
+
 [tool.ruff.lint]
-select = ["E", "F", "I"]
+select = ["E", "F", "I", "B", "W", "UP"]
 
 [tool.tox]
 legacy_tox_ini = """

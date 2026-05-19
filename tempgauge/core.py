@@ -3,6 +3,7 @@
 from pathlib import Path
 
 import numpy as np
+import numpy.typing as npt
 
 from .equations import least_squares_fit as lsf
 from .equations import piecewise_linear_interpolation as pli
@@ -52,7 +53,9 @@ class Core:
         """
         self.readings.append(point)
 
-    def _to_numpy_arrays(self) -> tuple[np.ndarray, np.ndarray]:
+    def _to_numpy_arrays(
+        self,
+    ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
         """Convert the reading points to x and y matrices.
 
         Returns:
@@ -76,7 +79,7 @@ class Core:
         lines = []
 
         for (start_time, start_temp), (end_time, end_temp) in zip(
-            self.readings, self.readings[1:]
+            self.readings, self.readings[1:], strict=False
         ):
             y_int, slope = pli(start_time, end_time, start_temp, end_temp)
             sign = "+" if slope >= 0 else "-"

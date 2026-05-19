@@ -8,7 +8,7 @@ from pathlib import Path
 from tempgauge import Core, parse_raw_temps
 
 
-def main():
+def main() -> None:
     """Run the cpu-temperature program."""
     parser = argparse.ArgumentParser(
         prog="cpu-temperature",
@@ -24,7 +24,7 @@ def main():
 
     cores = []
 
-    with open(args.txt_file, "r", encoding="utf-8") as temps:
+    with open(args.txt_file, encoding="utf-8") as temps:
         core_count = len(temps.readline().split())
 
         for core_num in range(core_count):

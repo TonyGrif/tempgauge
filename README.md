@@ -41,9 +41,9 @@ files will be created, one for each core following the naming convention of `cor
 As an example, `core-0.txt` will contain the following:
 ```
 0      <= x <=     30; y = 61.0000 + 0.6333; interpolation
-30     <= x <=     60; y = 98.0000 + -0.6000; interpolation
+30     <= x <=     60; y = 98.0000 - 0.6000; interpolation
 60     <= x <=     90; y = 20.0000 + 0.7000; interpolation
-90     <= x <=    120; y = 128.0000 + -0.5000; interpolation
+90     <= x <=    120; y = 128.0000 - 0.5000; interpolation
 0      <= x <=    120; y = 67.4000 + 0.0567; least-squares
 ```
 
