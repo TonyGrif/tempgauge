@@ -17,13 +17,13 @@ jobs:
         with:
           python-version: "3.11"
       - name: Python Poetry Action
-        uses: abatilo/actions-poetry@v3.0.0
+        uses: abatilo/actions-poetry@v4
       - name: Build
         run: |
           poetry install
           poetry build
       - name: Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: dist/*
           draft: true

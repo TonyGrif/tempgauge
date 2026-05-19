@@ -7,9 +7,9 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
-    "numpy (>=2.0.0,<3.0.0)"
+    "numpy (>=2.1.0,<3.0.0)"
 ]
 
 [tool.poetry]
@@ -49,7 +49,7 @@ legacy_tox_ini = """
     [tox]
     requires =
         tox>=4
-    env_list = py{39, 310, 311, 312}
+    env_list = py{310, 311, 312, 313, 314}
     isolated_build = true
 
     [testenv]
