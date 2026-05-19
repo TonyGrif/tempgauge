@@ -1,5 +1,7 @@
 import io
 
+import pytest
+
 from tempgauge.parse_temps import parse_raw_temps
 
 
@@ -33,3 +35,8 @@ class TestParseRawTemps:
         data = io.StringIO("65.5 70.2\n")
         results = list(parse_raw_temps(data))
         assert results[0][1] == [65.5, 70.2]
+
+    def test_non_numeric_raises(self):
+        data = io.StringIO("not_a_number\n")
+        with pytest.raises(ValueError):
+            list(parse_raw_temps(data))

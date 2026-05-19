@@ -12,7 +12,9 @@ Example Usage:
 """
 
 from .core import Core
+from .parse_temps import parse_raw_temps
 
 __all__ = [
     "Core",
+    "parse_raw_temps",
 ]

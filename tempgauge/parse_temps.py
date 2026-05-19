@@ -18,6 +18,9 @@ def parse_raw_temps(
     Yields:
         A tuple containing the next time step and a List containing _n_ core
         temps as floating point values (where _n_ is the number of CPU cores)
+
+    Raises:
+        ValueError: If any value in a line cannot be parsed as a float.
     """
     for step, line in enumerate(original_temps):
         yield (step * step_size), [float(v) for v in line.split()]

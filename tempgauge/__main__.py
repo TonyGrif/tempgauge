@@ -5,8 +5,7 @@
 import argparse
 from pathlib import Path
 
-from tempgauge import Core
-from tempgauge.parse_temps import parse_raw_temps
+from tempgauge import Core, parse_raw_temps
 
 
 def main():
@@ -20,7 +19,7 @@ def main():
 
     args = parser.parse_args()
 
-    if not args.txt_file.is_file() or args.txt_file.suffix != ".txt":
+    if not args.txt_file.is_file() or args.txt_file.suffix.lower() != ".txt":
         parser.error("Must supply a real text file")
 
     cores = []
@@ -35,7 +34,7 @@ def main():
 
         for time_step, readings in parse_raw_temps(temps):
             if not readings:
-                break
+                continue
 
             for core_idx, temp in enumerate(readings):
                 cores[core_idx].add_reading((time_step, temp))

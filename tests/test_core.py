@@ -55,6 +55,10 @@ class TestCore:
     def test_str_empty(self, core):
         assert str(core) == ""
 
+    def test_str_single_reading(self, core):
+        core.add_reading((0, 72))
+        assert str(core) == ""
+
     def test_write_to_file(self, full_core, tmp_path):
         full_core.write_to_file(tmp_path)
         out = tmp_path / "core-0.txt"

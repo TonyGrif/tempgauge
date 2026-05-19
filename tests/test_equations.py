@@ -53,3 +53,9 @@ class TestEquations:
         result = least_squares_fit(x_matrix, y_matrix)
         assert isclose(result[0], -0.3333, rel_tol=1e-4)
         assert isclose(result[1], -2.0000, rel_tol=1e-4)
+
+    def test_least_squares_fit_singular(self):
+        x_matrix = np.array([[1, 0], [1, 0]])
+        y_matrix = np.array([[61], [80]])
+        with pytest.raises(np.linalg.LinAlgError):
+            least_squares_fit(x_matrix, y_matrix)
