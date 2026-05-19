@@ -27,22 +27,17 @@ tox = "^4.27.0"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.16.1"
-black = "^25.1.0"
-isort = "^6.0.1"
-pylint = "^3.3.7"
 ruff = "^0.12.1"
-flake8-pyproject = "^1.2.3"
 poethepoet = "^0.36.0"
 
 [tool.poetry.group.docs.dependencies]
 pdoc = "^15.0.4"
 
-[tool.isort]
-profile = "black"
+[tool.ruff]
+line-length = 88
 
-[tool.flake8]
-max-line-length = 88
-extend-ignore = ["E203", "E701"]
+[tool.ruff.lint]
+select = ["E", "F", "I"]
 
 [tool.tox]
 legacy_tox_ini = """
@@ -66,14 +61,10 @@ legacy_tox_ini = """
 test = "pytest --cov --cov-report term-missing"
 docs = "pdoc tempgauge/ --docformat google"
 pubdocs = "pdoc tempgauge/ -o docs/ --docformat google"
-_black = "black tempgauge/ tests/"
-_isort = "isort tempgauge/ tests/"
-format = ["_black", "_isort"]
+format = "ruff format tempgauge/ tests/"
 _mypy = "mypy tempgauge/"
-_pylint = "pylint tempgauge"
-_ruff = "ruff check tempgauge/"
-_flake = "flake8 tempgauge/"
-lint = ["_mypy", "_pylint", "_ruff", "_flake"]
+_ruff = "ruff check tempgauge/ tests/"
+lint = ["_mypy", "_ruff"]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
