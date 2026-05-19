@@ -38,4 +38,4 @@ jobs:
     - name: Lint with Poe
       run: poetry run poe lint
     - name: Test with Tox and PyTest
-      run: poetry run tox
+      run: poetry run tox --parallel auto
