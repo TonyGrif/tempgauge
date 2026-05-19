@@ -21,26 +21,24 @@ def main():
     args = parser.parse_args()
 
     if not args.txt_file.is_file() or args.txt_file.suffix != ".txt":
-        print("Must supply a real text file")
-        return
+        parser.error("Must supply a real text file")
 
     cores = []
 
     with open(args.txt_file, "r", encoding="utf-8") as temps:
-        last_line = temps.tell()
-        count = len((temps.readline()).split())
+        core_count = len(temps.readline().split())
 
-        for core_num in range(count):
+        for core_num in range(core_count):
             cores.append(Core(core_num))
 
-        temps.seek(last_line)
+        temps.seek(0)
 
-        for f_temps in parse_raw_temps(temps):
-            if not f_temps[1]:
+        for time_step, readings in parse_raw_temps(temps):
+            if not readings:
                 break
 
-            for count, temp in enumerate(f_temps[1]):
-                cores[count].add_reading((f_temps[0], temp))
+            for core_idx, temp in enumerate(readings):
+                cores[core_idx].add_reading((time_step, temp))
 
     for core in cores:
         core.write_to_file()
