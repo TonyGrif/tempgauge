@@ -13,7 +13,7 @@ class Core:
 
     Attributes:
         core_num: The CPU core number.
-        readings: List of tuples of CPU readings.
+        readings: Collection of tuples containing (time, temperature) data.
     """
 
     def __init__(self, c_num: int) -> None:
@@ -24,7 +24,6 @@ class Core:
         """
         self.core_num = c_num
         self.readings: list[tuple[float, float]] = []
-        """Collection of tuples containing (time, temperature) data."""
 
     @property
     def core_num(self) -> int:
@@ -42,7 +41,7 @@ class Core:
             AttributeError: If negative number is passed.
         """
         if num < 0:
-            raise AttributeError("Negative core number is not allowed")
+            raise ValueError("Negative core number is not allowed")
         self._core_num = num
 
     def add_reading(self, point: tuple[float, float]) -> None:
@@ -53,7 +52,7 @@ class Core:
         """
         self.readings.append(point)
 
-    def _to_numpy_arrays(self) -> tuple:
+    def _to_numpy_arrays(self) -> tuple[np.ndarray, np.ndarray]:
         """Convert the reading points to x and y matrices.
 
         Returns:
@@ -71,6 +70,9 @@ class Core:
         Returns:
             string (str): String representation
         """
+        if len(self.readings) < 2:
+            return ""
+
         string = ""
 
         for (start_time, start_temp), (end_time, end_temp) in zip(
@@ -94,16 +96,13 @@ class Core:
 
         return string
 
-    def write_to_file(self, directory: str = "reports") -> None:
+    def write_to_file(self, directory: str | Path = "reports") -> None:
         """Write a core's calculations to file.
 
         Args:
             directory: The output directory.
         """
-        try:
-            Path.mkdir(Path(directory), parents=True)
-        except FileExistsError:
-            pass
+        Path(directory).mkdir(parents=True, exist_ok=True)
 
         with open(
             f"{directory}/core-{self.core_num}.txt", "w", encoding="UTF-8"

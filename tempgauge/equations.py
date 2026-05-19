@@ -43,6 +43,9 @@ def least_squares_transpose(
 
     Returns:
         values (tuple): The resulting y-intercept and slope.
+
+    Raises:
+        numpy.linalg.LinAlgError: If the x-values are not distinct (singular matrix).
     """
     x_transpose = np.transpose(x_matrix)
     xtx = np.dot(x_transpose, x_matrix)
