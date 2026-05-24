@@ -20,7 +20,7 @@ def piecewise_linear_interpolation(
         y_one: Ending temperature.
 
     Returns:
-        values (tuple): The resulting y-intercept and slope.
+        Tuple containing the resulting y-intercept and slope.
 
     Raises:
         ValueError: If x_zero and x_one are equal.
@@ -45,10 +45,10 @@ def least_squares_fit(
         y_matrix: The Y matrix.
 
     Returns:
-        values (tuple): The resulting y-intercept and slope.
+        Tuple containing the resulting y-intercept and slope.
 
     Raises:
-        numpy.linalg.LinAlgError: If the x-values are not distinct (singular matrix).
+        numpy.linalg.LinAlgError: If the x-values are not distinct.
     """
     x_transpose = np.transpose(x_matrix)
     xtx = np.dot(x_transpose, x_matrix)

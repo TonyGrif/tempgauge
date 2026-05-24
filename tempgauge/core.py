@@ -18,7 +18,7 @@ class Core:
     """
 
     def __init__(self, c_num: int) -> None:
-        """Constructor for the Core class
+        """Constructor for the Core class.
 
         Args:
             c_num: The CPU core number.
@@ -59,8 +59,7 @@ class Core:
         """Convert the reading points to x and y matrices.
 
         Returns:
-            x_matrix (tuple[0]): The X matrix.
-            y_matrix (tuple[1]): The Y matrix.
+            Tuple containing X and Y matricies.
         """
         x_points = [[1, t] for t, _ in self.readings]
         y_points = [[temp] for _, temp in self.readings]
@@ -71,7 +70,7 @@ class Core:
         """Return the string representation of this object.
 
         Returns:
-            string (str): String representation
+            String representation.
         """
         if len(self.readings) < 2:
             return ""

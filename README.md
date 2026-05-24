@@ -31,7 +31,7 @@ with each new line signifying a new reading at a different time:
 ```
 
 If this program is run without any arguments, the following usage error
-message will be outputted: `usage: cpu-temperature [-h] txt_file`
+message will be outputted: `usage: tempgague [-h] txt_file`
 
 Invalid text file formatting will not be checked for and will result in undefined behavior.
 

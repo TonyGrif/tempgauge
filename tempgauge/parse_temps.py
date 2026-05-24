@@ -1,4 +1,4 @@
-"""This module is a collection of input helpers for the CPU Temperatures Project."""
+"""This module is a collection of input helpers for the CPU Temperatures project."""
 
 from collections.abc import Iterator
 from typing import TextIO
